@@ -23,20 +23,25 @@
             <!-- heading tab.. these are the tags that denote topic headers.. they go from h1 - h6-->
             <!-- if you want to make something a link we use an anchor tag with an html reference-->
             <!-- this usually goes inside another tab-->
+            {% if user.is_authenticated %}
+            <a href="{% url 'post_new' %}" class="top-menu">
+                {% include './icons/file-earmark-plus.svg' %}
+            </a>
+            <a href="{% url 'post_draft_list' %}" class="top-menu">
+                {% include './icons/pen.svg' %}
+            </a>
+            {% endif %}
+            <h1><a href="/">Django Girls Blog</a></h1>
         </div>
-        <a href="{% url 'post_new' %}" class="top-menu">
-            {% include './icons/file-earmark-plus.svg' %}
-        </a>
-        <h1><a href="/">Django Girls Blog</a></h1>
     </header>
     <!-- article tags are like the header tags in that they are placeholders to denote articles-->
 
     <main class="container">
         <div class="row">
             <div class="col"></div>
-                {% block content %}
-                {% endblock %}
-            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
         </div>
     </main>
 
